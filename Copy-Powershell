@@ -1,0 +1,7 @@
+#コピーするファイルを設定
+$copyFile = 'tes1.txt'
+#ディレクトリパス
+Set-Location (変更するディレクトリ)
+#通番に2から100までを設定してコピーする。Foreach
+2..100 | % {Copy-Item $copyFile $_-$copyFile}
+pause
