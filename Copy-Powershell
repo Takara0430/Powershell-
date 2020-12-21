@@ -1,7 +1,24 @@
-#コピーするファイルを設定
+#ファイル名を連番で大量に作成して、そのフォルダを日付として大量にコピーする
+#開始日のフォルダと、コピーするファイルをその中に入れていれば使用可能
+
+#今日の日付フォルダを作成してフォルダ名を下記に設定
+$today = '20201221'
+#コピー対象ファイルを作成して下記に設定
 $copyFile = 'tes1.txt'
-#ディレクトリパス
-Set-Location (変更するディレクトリ)
-#通番に2から100までを設定してコピーする。Foreach
+#Set-Location (対象のディレクトリ)
+Set-Location C:\***\*** ***\Desktop\Work\powershell\test
+#通番を入れる回数を設定（下記の場合2-から100-まで設定される）
 2..100 | % {Copy-Item $copyFile $_-$copyFile}
+#親パスに移動する
+Set-Location ..
+
+#指定回数文フォルダを作成する(ここでは100日分)
+for ($i=0; $i -lt 100; $i++){
+  $tomorrow = (Get-Date).Adddays(1 +$i).ToString('yyyyMMdd')
+Copy-Item $today -Recurse $tomorrow
+}
+
 pause
+
+#おまけ
+#PowerShell -ExecutionPolicy RemoteSigned .\copy-directory.ps1
