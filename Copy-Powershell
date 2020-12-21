@@ -19,6 +19,3 @@ Copy-Item $today -Recurse $tomorrow
 }
 
 pause
-
-#おまけ
-#PowerShell -ExecutionPolicy RemoteSigned .\copy-directory.ps1
